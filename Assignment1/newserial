@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+
+	char Sq[] = "AKLMAATCD";
+	char Sq1[50][50] = { "", "" };
+	char Si[] = "ALPQRKLMMAKLPPRTLQ";
+	char Si1[500][5] = { "", "" };
+	int w = 7;
+
+
+	for (int i = 0; i < strlen(Sq) - w + 1; i++)
+	{
+		int a = 0;
+		for (int j = i; j < i + w; j++)
+		{
+			Sq1[i][j] = Sq[j];
+			printf("%c", Sq1[i][j]);
+			a++;
+		}
+		printf("\n");
+	}
+
+	printf("\n");
+
+	for (int i = 0; i < strlen(Si) - w + 1; i++)
+	{
+		int a = 0;
+		for (int j = i; j < i + w; j++)
+		{
+			Si1[i][a] = Si[j];
+			printf("%c", Si1[i][a]);
+			a++;
+		}
+		printf("\n");
+	}
+
+	printf("\n");
+
+
+	int score[100][100] = { 0 };
+	for (int b = 0; b < strlen(Sq) - w + 1; b++)
+	{
+		for (int i = 0; i < strlen(Si) - w + 1; i++)
+		{
+
+			for (int j = 0; j < w; j++)
+			{
+				if (Sq1[b][j] == Si1[i][j]){
+					score[b][i]++;
+					//printf("Matched %c and %c with score %d b is %d , i is %d , j is %d\n", Sq1[b][j] ,Si1[i][j],score[b][i],b,i,j);
+				}
+				//else{ printf("MisMatched %c and %c  b is %d , i is %d , j is %d\n", Sq1[b][j], Si1[i][j], b, i, j); }
+
+			}
+
+		}
+	}
+
+	for (int b = 0; b < strlen(Sq) - w + 1; b++)
+	{
+	for (int i = 0; i < strlen(Si) - w + 1 ; i++)
+	{
+	printf("%d ", score[b][i]);
+	//printf("Matched %c and %c with score %d b is %d , i is %d , j is %d\n", Sq1[b][j] ,Si1[i][j],score,b,i,j);
+	}
+	printf("\n");
+	}
+
+}
