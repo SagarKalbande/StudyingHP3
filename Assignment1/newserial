@@ -44,28 +44,23 @@ int main(){
 	{
 		for (int i = 0; i < strlen(Si) - w + 1; i++)
 		{
-
 			for (int j = 0; j < w; j++)
 			{
 				if (Sq1[b][j] == Si1[i][j]){
 					score[b][i]++;
-					//printf("Matched %c and %c with score %d b is %d , i is %d , j is %d\n", Sq1[b][j] ,Si1[i][j],score[b][i],b,i,j);
 				}
-				//else{ printf("MisMatched %c and %c  b is %d , i is %d , j is %d\n", Sq1[b][j], Si1[i][j], b, i, j); }
-
 			}
-
 		}
 	}
 
+	printf("The following is matrix of how many letters match individually between Sq and Si each block of window w\n\n");
 	for (int b = 0; b < strlen(Sq) - w + 1; b++)
-	{
-	for (int i = 0; i < strlen(Si) - w + 1 ; i++)
-	{
-	printf("%d ", score[b][i]);
-	
-	}
-	printf("\n");
-	}
+		{
+			for (int i = 0; i < strlen(Si) - w + 1 ; i++)
+				{
+					printf("%d ", score[b][i]);
+				}
+				printf("\n");
+		}
 
 }
