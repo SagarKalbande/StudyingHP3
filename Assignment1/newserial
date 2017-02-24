@@ -3,13 +3,14 @@
 
 int main(){
 
-	char Sq[] = "AKLMAATCD";
-	char Sq1[50][50] = { "", "" };
-	char Si[] = "ALPQRKLMMAKLPPRTLQ";
-	char Si1[500][5] = { "", "" };
-	int w = 4;
+	char Sq[] = "AKLMAATCD";			//Sq
+	char Sq1[50][50] = { "", "" };		//new 2d array for storing Sq in blocks of W letters
+	char Si[] = "ALPQRKLMMAKLPPRTLQ";	//Si
+	char Si1[500][5] = { "", "" };		//new 2d array for storing Si in blocks of W letters
+	int w = 4;							//window width
+	int T = 3;							//thresh-hold
 
-
+	//for dividing Sq into blocks of width W (using 2d arrays)
 	for (int i = 0; i < strlen(Sq) - w + 1; i++)
 	{
 		int a = 0;
@@ -24,6 +25,7 @@ int main(){
 
 	printf("\n");
 
+	//for dividing Si into blocks of width W (using 2d arrays)
 	for (int i = 0; i < strlen(Si) - w + 1; i++)
 	{
 		int a = 0;
@@ -38,7 +40,7 @@ int main(){
 
 	printf("\n");
 
-
+	//Score[1][2] is the number of letters that match from Sq1[1] and Si1[2] (i.e. from the blocks)
 	int score[100][100] = { 0 };
 	for (int b = 0; b < strlen(Sq) - w + 1; b++)
 	{
@@ -53,14 +55,17 @@ int main(){
 		}
 	}
 
-	printf("The following is matrix of how many letters match individually between Sq and Si each block of window w\n\n");
+	//printf("The following is matrix of how many letters match individually between Sq and Si each block of window w\n\n");
 	for (int b = 0; b < strlen(Sq) - w + 1; b++)
 		{
 			for (int i = 0; i < strlen(Si) - w + 1 ; i++)
 				{
-					printf("%d ", score[b][i]);
+					if (score[b][i]>=T)
+					{
+						printf("%c%c%c%c\n", Si[i], Si[i+1], Si[i+2], Si[i+3]);
+					}
 				}
-				printf("\n");
+				
 		}
 
 }
