@@ -56,41 +56,43 @@ int main(){
 	}
 
 	char M[50][50];
-	
+
 	//printf("The following is matrix of how many letters match individually between Sq and Si each block of window w\n\n");
 	for (int b = 0; b < strlen(Sq) - w + 1; b++)
+	{
+		for (int i = 0; i < strlen(Si) - w + 1; i++)
 		{
-			for (int i = 0; i < strlen(Si) - w + 1 ; i++)
+			int x = 0;
+			if (score[b][i] >= T)
+			{
+				printf("Seed is %c%c%c%c\nExpanded form:", Si[i], Si[i + 1], Si[i + 2], Si[i + 3]);
+				int y = 0;
+				for (int j = i - 1; j < i - 1 + strlen(Sq); j++)
 				{
-					int x = 0;
-					if (score[b][i]>=T)
-					{
-						printf("Seed is %c%c%c%c\n Expanded form of seed is:", Si[i], Si[i + 1], Si[i + 2], Si[i + 3]);
-						int y = 0;
-						for (int j = i-1; j < i + strlen(Sq) - 1; j++)
-						{
-							printf("%c",Si[j]);
-							M[x][y] = Si[j];
-							y++;
-						}
-						printf("\n");
-						x++;
-					}
+
+					M[x][y] = Si[j];
+					printf("%c", M[x][y]);
+					y++;
 				}
-				
+				printf("\n");
+				x++;
+			}
 		}
+
+	}
+
 
 	/*for (int i = 0; i < strlen(Sq) -w+1; i++)
 	{
-		for (int j = 0; j < 9; j++)
-		{
-			printf("%c", M[i][j]);
-		}
-		printf("\n");
+	for (int j = 0; j < 9; j++)
+	{
+	printf("%c", M[i][j]);
+	}
+	printf("\n");
 	}*/
 
 
-	
-				
-	}
 
+
+
+}
