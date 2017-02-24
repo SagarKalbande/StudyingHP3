@@ -7,7 +7,7 @@ int main(){
 	char Sq1[50][50] = { "", "" };
 	char Si[] = "ALPQRKLMMAKLPPRTLQ";
 	char Si1[500][5] = { "", "" };
-	int w = 7;
+	int w = 4;
 
 
 	for (int i = 0; i < strlen(Sq) - w + 1; i++)
@@ -15,8 +15,8 @@ int main(){
 		int a = 0;
 		for (int j = i; j < i + w; j++)
 		{
-			Sq1[i][j] = Sq[j];
-			printf("%c", Sq1[i][j]);
+			Sq1[i][a] = Sq[j];
+			printf("%c", Sq1[i][a]);
 			a++;
 		}
 		printf("\n");
@@ -63,7 +63,7 @@ int main(){
 	for (int i = 0; i < strlen(Si) - w + 1 ; i++)
 	{
 	printf("%d ", score[b][i]);
-	//printf("Matched %c and %c with score %d b is %d , i is %d , j is %d\n", Sq1[b][j] ,Si1[i][j],score,b,i,j);
+	
 	}
 	printf("\n");
 	}
