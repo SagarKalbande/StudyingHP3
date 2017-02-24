@@ -4,9 +4,9 @@
 int main(){
 
 	char Sq[] = "AKLMAATCD";			//Sq
-	char Sq1[50][50] = { "", "" };		//new 2d array for storing Sq in blocks of W letters
+	char Sq1[500][500] = { "", "" };		//new 2d array for storing Sq in blocks of W letters
 	char Si[] = "ALPQRKLMMAKLPPRTLQ";	//Si
-	char Si1[500][5] = { "", "" };		//new 2d array for storing Si in blocks of W letters
+	char Si1[500][500] = { "", "" };		//new 2d array for storing Si in blocks of W letters
 	int w = 4;							//window width
 	int T = 3;							//thresh-hold
 
@@ -55,23 +55,29 @@ int main(){
 		}
 	}
 
-	char M[50][50];
-
+	char M[500][500]; //Mij is a 2d array where the longer forms of seed are stored
+	int x = 0;
+	int count = 0; // count is to keep track of how many seeds are found
 	//printf("The following is matrix of how many letters match individually between Sq and Si each block of window w\n\n");
 	for (int b = 0; b < strlen(Sq) - w + 1; b++)
 	{
 		for (int i = 0; i < strlen(Si) - w + 1; i++)
 		{
-			int x = 0;
+			
 			if (score[b][i] >= T)
 			{
-				printf("Seed is %c%c%c%c\nExpanded form:", Si[i], Si[i + 1], Si[i + 2], Si[i + 3]);
+				count++;
+				printf("Seed is: ");
+				for (int n = 0; n < w; n++)
+				{
+					printf("%c", Si[i+n]);
+				}
+
 				int y = 0;
 				for (int j = i - 1; j < i - 1 + strlen(Sq); j++)
 				{
-
 					M[x][y] = Si[j];
-					printf("%c", M[x][y]);
+					//printf("%c", M[x][y]);
 					y++;
 				}
 				printf("\n");
@@ -82,14 +88,15 @@ int main(){
 	}
 
 
-	/*for (int i = 0; i < strlen(Sq) -w+1; i++)
+	for (int i = 0; i < count; i++)
 	{
-	for (int j = 0; j < 9; j++)
-	{
-	printf("%c", M[i][j]);
+		printf("Expanded form :");
+		for (int j = 0; j < strlen(Sq); j++)
+		{
+			printf("%c", M[i][j]);
+		}
+		printf("\n");
 	}
-	printf("\n");
-	}*/
 
 
 
