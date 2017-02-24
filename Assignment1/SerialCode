@@ -40,20 +40,19 @@ int main(){
 	printf("\n");
 	printf("\n");
 
-
-	for (int i = 0; i < strlen(Si) - w + 1; i++)
+	for (int b = 0; b < strlen(Sq); b++)
 	{
-		int b = 0;
-		for (int j = 0; j < w; j++)
+		for (int i = 0; i < strlen(Si) - w + 1; i++)
 		{
-			if (Sq1[b][j] == Si1[i][j]){
-				printf("Matched\n %d = i, %d = j %d = b\n", i, j, b);
+			
+			for (int j = 0; j < w; j++)
+			{
+				if (Sq1[b][j] == Si1[i][j]){
+					printf("Matched %c and %c\n", Sq1[b][j] ,Si1[i][j]);
+				}
+
 			}
-		
 		}
-		b++;
 	}
 
-	
-
-	}	
+	}
