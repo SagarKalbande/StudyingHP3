@@ -1,15 +1,27 @@
 #include<stdio.h>
 #include<string.h>
 
+int GetMax(int a, int b, int c){
+	if (a >= b && a >= c)
+	{return a;}
+	else if (b >= a && b >= c)
+	{return b;}
+	else{return c;}
+	}
+
+
 int main(){
 
-	char Sq[] = "AKLMAATCD";			//Sq
+	char Sq[] = "AKLMAATCD";				//Sq
 	char Sq1[500][500] = { "", "" };		//new 2d array for storing Sq in blocks of W letters
-	char Si[] = "ALPQRKLMMAKLPPRTLQ";	//Si
+	char Si[] = "ALPQRKLMMAKLPPRTLQKLSJDHSNVLSNOSDHCNKLDJKLMAASNKSNKJSNVCLKSMLV";	//Si (increased the length)
 	char Si1[500][500] = { "", "" };		//new 2d array for storing Si in blocks of W letters
-	int w = 4;							//window width
-	int T = 3;							//thresh-hold
+	int w = 4;								//window width
+	int T = 3;								//thresh-hold
+	int Max_Length = 15;					//Max_Length is the length of string we want to compare with used for score matrix calculation
 
+
+	printf("\nSq divided in blocks of width W\n");
 	//for dividing Sq into blocks of width W (using 2d arrays)
 	for (int i = 0; i < strlen(Sq) - w + 1; i++)
 	{
@@ -23,7 +35,7 @@ int main(){
 		printf("\n");
 	}
 
-	printf("\n");
+	printf("\nSi divided in blocks of width W\n");
 
 	//for dividing Si into blocks of width W (using 2d arrays)
 	for (int i = 0; i < strlen(Si) - w + 1; i++)
@@ -74,7 +86,7 @@ int main(){
 				}
 
 				int y = 0;
-				for (int j = i - 1; j < i - 1 + strlen(Sq); j++)
+				for (int j = i - 1; j < i - 1 + Max_Length; j++)
 				{
 					M[x][y] = Si[j];
 					//printf("%c", M[x][y]);
@@ -91,15 +103,62 @@ int main(){
 	for (int i = 0; i < count; i++)
 	{
 		printf("Expanded form :");
-		for (int j = 0; j < strlen(Sq); j++)
+		for (int j = 0; j < Max_Length; j++)
 		{
 			printf("%c", M[i][j]);
 		}
 		printf("\n");
 	}
 
+	int Match_MisMatch[100][100]; //Match,Mismatch score matrix
 
+	for (int k = 0; k < strlen(Sq); k++)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			for (int j = 0; j < Max_Length; j++)
+			{
+				if (M[i][j] == Sq[k]){
+					Match_MisMatch[k][j] = 1;
+				}
+				else
+				{
+					Match_MisMatch[k][j] = 0;
+				}
+			}
+		}
+	}
 
+	printf("\nThe following is the match-mismatch matrix\n");
 
+	for (int i = 0; i < strlen(Sq); i++)
+	{
+		for (int j = 0; j < Max_Length; j++)
+		{
+			printf("%d ", Match_MisMatch[i][j]);
+		}
+		printf("\n");
+	}
+
+	int FinalScore[100][100];
+	/*
+	for (int i = 0; i < count; i++)
+	{
+		for (int j = 0; j < Max_Length; j++)
+		{
+			FinalScore[i][j] = GetMax(FinalScore[i - 1][j - 1] + Match_MisMatch[i][j], FinalScore[i][j - 1], FinalScore[i - 1][j]);
+		}
+		//printf("\n");
+	}
+
+	for (int i = 0; i < count; i++)
+	{
+		for (int j = 0; j < Max_Length; j++)
+		{
+			printf("%d ", FinalScore[i][j]);
+		}
+		printf("\n");
+	}
+	*/
 
 }
